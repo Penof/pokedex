@@ -1,0 +1,9 @@
+<mat-nav-list (scrolled)="onScroll()" infiniteScroll >
+    <mat-list role="list">
+        <mat-list-item role="listitem" *ngFor="let pokemon of pagination.data" routerLink="/detail/{{pokemon.id}}">
+            <img src="../../../assets/img/sprites/{{pokemon.id}}.png" >
+            <span>{{pokemon.id}}.{{pokemon.name}}</span>  
+        </mat-list-item>
+    </mat-list>
+</mat-nav-list>
+<button *ngIf="pagination.offset >= 10" mat-raised-button (click)="prev()"><</button><button *ngIf="pagination.offset < 150" mat-raised-button (click)="next()">></button>

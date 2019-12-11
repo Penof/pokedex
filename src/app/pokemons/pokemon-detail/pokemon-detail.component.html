@@ -1,0 +1,33 @@
+<mat-card *ngIf="detail">
+        <mat-grid-list cols="2" rowHeight="150px">        
+                <mat-grid-tile >
+                        <mat-list>
+                                <img src="../../../assets/img/official-artwork/{{detail.id}}.png" > 
+                                <mat-card-content>
+                                        <p>No. {{('00' + detail.id).slice(-3)}}</p>
+                                </mat-card-content>
+                        </mat-list>
+                </mat-grid-tile>
+                <mat-grid-tile >
+                        <mat-list>
+                                <mat-list-item role="listitem">{{detail.name}} 
+                                        <button mat-icon-button (click)="play(audioPlayer)">
+                                                <mat-icon>play_circle_outline</mat-icon>
+                                        </button >
+                                        <audio #audioPlayer controls autoplay>               
+                                                <source src="../../../assets/audio/{{detail.id}}.mp3" type="audio/mp3" />
+                                        </audio>                                           
+                                </mat-list-item>
+                                <mat-list-item role="listitem">
+                                        <mat-chip-list>
+                                                <mat-chip *ngFor="let type of detail.types">{{type}}</mat-chip>
+                                        </mat-chip-list>
+                                </mat-list-item>
+                                <mat-list-item role="listitem">Taille: {{detail.height.toFixed(1)}} m</mat-list-item>
+                                <mat-list-item role="listitem">Poids: {{detail.weight.toFixed(1)}} kg</mat-list-item>  
+                        </mat-list>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="2">{{detail.description}}</mat-grid-tile>
+        </mat-grid-list>
+        <a mat-raised-button (click)="goBack()">Back</a>
+</mat-card>
