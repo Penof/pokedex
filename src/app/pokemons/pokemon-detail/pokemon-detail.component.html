@@ -4,7 +4,7 @@
                         <mat-list>
                                 <img src="../../../assets/img/official-artwork/{{detail.id}}.png" > 
                                 <mat-card-content>
-                                        <p>No. {{('00' + detail.id).slice(-3)}}</p>
+                                        <p>No. {{detail.id | number:'3.'}}</p>
                                 </mat-card-content>
                         </mat-list>
                 </mat-grid-tile>
@@ -23,8 +23,8 @@
                                                 <mat-chip *ngFor="let type of detail.types">{{type}}</mat-chip>
                                         </mat-chip-list>
                                 </mat-list-item>
-                                <mat-list-item role="listitem">Taille: {{detail.height.toFixed(1)}} m</mat-list-item>
-                                <mat-list-item role="listitem">Poids: {{detail.weight.toFixed(1)}} kg</mat-list-item>  
+                                <mat-list-item role="listitem">Taille: {{detail.height | number:'1.1-1'}} m</mat-list-item>
+                                <mat-list-item role="listitem">Poids: {{detail.weight | number:'1.1-1'}} kg</mat-list-item>  
                         </mat-list>
                 </mat-grid-tile>
                 <mat-grid-tile [colspan]="2">{{detail.description}}</mat-grid-tile>
