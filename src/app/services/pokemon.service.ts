@@ -28,4 +28,9 @@ export class PokemonService {
     const url = this.pokemonUrl + '/pokemons/' + id;
     return this.httpClient.get<DetailPokemon>(url);
   }
+
+  getPokemonWithSearch(search: string): Observable<PagedData<Pokemon>> {
+    const url = this.pokemonUrl + '/pokemons?search=' + search;
+    return this.httpClient.get<PagedData<Pokemon>>(url);
+  }
 }

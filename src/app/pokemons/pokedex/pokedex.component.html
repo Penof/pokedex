@@ -1,0 +1,13 @@
+<mat-drawer-container >
+    <mat-drawer mode="side" opened>Menu</mat-drawer>
+    <mat-drawer-content>
+        <mat-grid-list cols="2"  rowHeight="600px">        
+            <mat-grid-tile >
+                <app-pokemon-list (messageEvent)="receiveMessage($event)"></app-pokemon-list>
+            </mat-grid-tile>
+            <mat-grid-tile >
+                <app-pokemon-detail *ngIf="id" [name]="id"></app-pokemon-detail>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </mat-drawer-content>
+</mat-drawer-container>

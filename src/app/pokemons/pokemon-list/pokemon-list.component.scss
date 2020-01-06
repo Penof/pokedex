@@ -9,3 +9,22 @@ mat-list-item :hover{
 img {
     height: 100%;
 }
+
+.example-viewport {
+    height: 500px;
+    width: 400px;
+  }
+  
+.example-item {
+    height: 100px;
+}
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.example-full-width {
+    width: 100%;
+}
