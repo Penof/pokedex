@@ -1,8 +1,9 @@
 import { PagedData } from './../models/paged-data.model';
 import { Pokemon } from '../models/pokemon.model';
+import { Identifiants } from '../models/identifiants.model';
 import { Injectable } from '@angular/core';
 import { of, Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DetailPokemon } from '../models/detail-pokemon.model';
 
 @Injectable({
@@ -32,5 +33,20 @@ export class PokemonService {
   getPokemonWithSearch(search: string): Observable<PagedData<Pokemon>> {
     const url = this.pokemonUrl + '/pokemons?search=' + search;
     return this.httpClient.get<PagedData<Pokemon>>(url);
+  }
+
+  connexion(identifiants: Identifiants): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json'})
+    };
+    return this.httpClient.post(this.pokemonUrl + '/auth/login', identifiants, httpOptions);
+  }
+
+  getMyTeam(): Observable<number[]> {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json', Authorization: 'Bearer ' + localStorage.getItem('access_token')})
+    };
+    const url = this.pokemonUrl + '/trainers/me/team';
+    return this.httpClient.get<number[]>(url, httpOptions);
   }
 }
