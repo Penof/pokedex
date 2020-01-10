@@ -2,7 +2,9 @@
     <mat-drawer mode="side" opened>
         <app-pokemon-list (messageEvent)="receiveMessage($event)"></app-pokemon-list>
     </mat-drawer>
-    <mat-drawer-content>    
-        <app-pokemon-detail *ngIf="id" [name]="id"></app-pokemon-detail>
+    <mat-drawer-content>   
+        <div class="main-div"> 
+            <app-pokemon-detail *ngIf="id" [name]="id"></app-pokemon-detail>
+        </div>
     </mat-drawer-content>
 </mat-drawer-container>
