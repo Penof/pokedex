@@ -13,7 +13,7 @@ export class PokemonListComponent implements OnInit {
 
   pagination: PagedData<Pokemon> = {
     data: [],
-    limit: 150,
+    limit: 20,
     offset: 0
   };
 
