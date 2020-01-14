@@ -1,4 +1,4 @@
-<mat-card *ngIf="detail">
+<mat-card *ngIf="detail$ | async as detail">
         <mat-grid-list cols="2" rowHeight="150px">        
                 <mat-grid-tile >
                         <mat-list>
@@ -11,7 +11,7 @@
                 <mat-grid-tile >
                         <mat-list>
                                 <mat-list-item role="listitem">{{detail.name}} 
-                                        <button mat-icon-button (click)="play(audioPlayer)">
+                                        <button mat-icon-button (click)="audioPlayer.play()">
                                                 <mat-icon>play_circle_outline</mat-icon>
                                         </button >
                                         <audio #audioPlayer controls autoplay>               
