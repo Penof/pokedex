@@ -47,6 +47,11 @@ export class PokemonListComponent implements OnInit {
     this.sendMessage(pokemon.id);
   }
 
+  onScroll() {
+    this.pagination.limit = this.pagination.limit + 10;
+    this.getAllPokemons();
+  }
+
   searchPokemons(event: any) {
     if (event.target.value !== '') {
       this.pokemonService.getPokemonWithSearch(event.target.value).subscribe(result => this.pagination.data = result.data);
