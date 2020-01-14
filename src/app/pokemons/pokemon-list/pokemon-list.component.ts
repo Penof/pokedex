@@ -13,7 +13,7 @@ export class PokemonListComponent implements OnInit {
 
   pagination: PagedData<Pokemon> = {
     data: [],
-    limit: 150,
+    limit: 20,
     offset: 0
   };
 
@@ -45,6 +45,11 @@ export class PokemonListComponent implements OnInit {
   detail(pokemon: Pokemon) {
     this.router.navigate(['/pokedex/' + pokemon.id]);
     this.sendMessage(pokemon.id);
+  }
+
+  onScroll() {
+    this.pagination.limit = this.pagination.limit + 10;
+    this.getAllPokemons();
   }
 
   searchPokemons(event: any) {
