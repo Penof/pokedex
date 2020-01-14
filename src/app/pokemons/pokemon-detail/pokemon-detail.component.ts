@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { DetailPokemon } from 'src/app/models/detail-pokemon.model';
 import { NumberValueAccessor } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-pokemon-detail',
@@ -13,12 +14,12 @@ export class PokemonDetailComponent implements OnInit {
 
   constructor(private pokemonService: PokemonService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
-  detail: DetailPokemon;
+  detail$: Observable<DetailPokemon>;
   id: number;
 
   @Input()
-  set name(name: number) {
-    this.id = name;
+  set name(id: number) {
+    this.id = id;
     this.getPokemon();
   }
 
@@ -28,12 +29,9 @@ export class PokemonDetailComponent implements OnInit {
   }
 
   getPokemon() {
-    this.pokemonService.getPokemonById(this.id).subscribe(res => this.detail = res);
+    this.detail$ = this.pokemonService.getPokemonById(this.id);
   }
 
-  play(input: any) {
-    input.play();
-  }
 
   goBack() {
     this.router.navigate(['/pokemons']);
