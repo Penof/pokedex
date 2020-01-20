@@ -3,13 +3,11 @@
         <input matInput placeholder="Search" (keyup)="searchPokemons($event)">
     </mat-form-field>
 </form>
-<cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
-        <mat-nav-list (scrolled)="onScroll()" infiniteScroll >
-            <mat-list role="list">
-                <mat-list-item role="listitem" *cdkVirtualFor="let pokemon of pagination.data" (click)="detail(pokemon)">
-                    <img src="../../../assets/img/sprites/{{pokemon.id}}.png" >
-                    <span>{{pokemon.id}}.{{pokemon.name}}</span>  
-                </mat-list-item>
-            </mat-list>
-        </mat-nav-list>
-</cdk-virtual-scroll-viewport>
+<mat-nav-list class="my-list" (scrolled)="onScroll()" infiniteScroll [scrollWindow]="false">
+    <mat-list role="list">
+        <mat-list-item role="listitem" *ngFor="let pokemon of pagination.data" (click)="detail(pokemon)">
+            <img src="../../../assets/img/sprites/{{pokemon.id}}.png" >
+            <span>{{pokemon.id}}.{{pokemon.name}}</span>  
+        </mat-list-item>
+    </mat-list>
+</mat-nav-list>

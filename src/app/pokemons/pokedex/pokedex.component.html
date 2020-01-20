@@ -1,5 +1,6 @@
 <mat-drawer-container  class="example-container">
     <mat-drawer mode="side" opened>
+        <a mat-raised-button (click)="goTeam()">Gérer mon équipe</a>
         <app-pokemon-list (messageEvent)="receiveMessage($event)"></app-pokemon-list>
     </mat-drawer>
     <mat-drawer-content>   

@@ -1,0 +1,26 @@
+<a mat-raised-button (click)="retour()">Retour</a>
+<a mat-raised-button (click)="deconnexion()">Deconnexion</a>
+<button mat-raised-button (click)="ajouter()">ajouter</button>
+
+<form class="example-form">
+    <mat-form-field class="example-full-width" >
+        <input type="text" matInput placeholder="id pokemon"  matInput [matAutocomplete]="auto" (keyup)="searchPokemons($event)">
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="OnPokemonSelected($event.option)">
+            <mat-option *ngFor="let pokemon of pagination.data"  [id]="pokemon.id" [value]="pokemon.name">
+                <img  class="search" src="../../../assets/img/sprites/{{pokemon.id}}.png" >
+                <span>{{pokemon.id}}.{{pokemon.name}}</span>
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+</form>
+
+<mat-nav-list class="my-list">
+    <mat-list role="list">
+        <mat-list-item role="listitem" *ngFor="let pokemon of team" >
+            <img src="../../../assets/img/sprites/{{pokemon.id}}.png" >
+            <span>{{pokemon.id}}.{{pokemon.name}}</span>
+            <span><button mat-raised-button (click)="supprimer(pokemon.id)">supprimer</button></span>
+        </mat-list-item>
+    </mat-list>
+</mat-nav-list>
+

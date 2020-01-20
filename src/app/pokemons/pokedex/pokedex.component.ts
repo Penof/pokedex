@@ -21,4 +21,7 @@ export class PokedexComponent implements OnInit {
     this.id = $event;
   }
 
+  goTeam() {
+    this.router.navigate(['/my-team']);
+  }
 }

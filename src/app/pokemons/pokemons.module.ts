@@ -15,14 +15,17 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import {MatInputModule} from '@angular/material/input';
 import { ConnexionComponent } from './connexion/connexion.component';
-
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MyTeamComponent } from './my-team/my-team.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
     PokemonListComponent,
     PokemonDetailComponent,
     PokedexComponent,
-    ConnexionComponent
+    ConnexionComponent,
+    MyTeamComponent,
   ],
   imports: [
     CommonModule,
@@ -36,11 +39,14 @@ import { ConnexionComponent } from './connexion/connexion.component';
     InfiniteScrollModule,
     MatSidenavModule,
     ScrollingModule,
-    MatInputModule
+    MatInputModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatAutocompleteModule
   ],
   exports: [
     PokemonListComponent,
-    PokemonDetailComponent
+    PokemonDetailComponent,
   ]
 })
 export class PokemonsModule { }

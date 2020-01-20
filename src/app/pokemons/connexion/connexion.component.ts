@@ -1,6 +1,8 @@
 import { Identifiants } from './../../models/identifiants.model';
 import { Component, OnInit } from '@angular/core';
 import { PokemonService } from 'src/app/services/pokemon.service';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-connexion',
@@ -14,27 +16,33 @@ export class ConnexionComponent implements OnInit {
     password: '',
   };
 
+  connexionForm = new FormGroup ({
+    email: new FormControl(),
+    password: new FormControl(),
+  });
+
   tokens: any;
 
-  constructor(private pokemonService: PokemonService) { }
+  constructor(private pokemonService: PokemonService, private router: Router) { }
 
   ngOnInit() {
   }
 
-  connexion(email, password) {
-    this.identifiants.email = email;
-    this.identifiants.password = password;
+  connexion() {
+    this.identifiants.email = this.connexionForm.get('email').value;
+    this.identifiants.password = this.connexionForm.get('password').value;
     this.pokemonService.connexion(this.identifiants).subscribe(res => {
       this.tokens = res;
       localStorage.setItem('access_token', this.tokens.access_token);
       localStorage.setItem('refresh_token', this.tokens.refresh_token);
       localStorage.setItem('expires_in', this.tokens.expires_in);
+      this.router.navigate(['/my-team']);
     },
     error => console.log(error));
 
   }
 
-  myteam() {
-    this.pokemonService.getMyTeam().subscribe(res => console.log(res));
+  retour() {
+    this.router.navigate(['/pokedex']);
   }
 }

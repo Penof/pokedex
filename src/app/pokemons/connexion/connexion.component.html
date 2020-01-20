@@ -1,16 +1,16 @@
 <div class="main-div">
     <mat-card class="example-card">
-        <form class="example-form" >
+        <form [formGroup]="connexionForm" class="example-form" >
             <mat-form-field class="example-full-width">
-                <input #email matInput placeholder="Email">
+                <input formControlName="email" matInput placeholder="Email" required>
             </mat-form-field>
             
             <mat-form-field class="example-full-width">
-                <input #password type="password" matInput placeholder="Password">
+                <input formControlName="password" type="password" matInput placeholder="Password" required>
             </mat-form-field>
         </form>
-        <button mat-button (click)="connexion(email.value,password.value)">Connexion</button>
-        <button mat-button (click)="myteam()">test</button>
+        <button mat-button (click)="connexion()">Connexion</button>
+        <button mat-button (click)="retour()">Retour</button>
 
     </mat-card>
 </div>
