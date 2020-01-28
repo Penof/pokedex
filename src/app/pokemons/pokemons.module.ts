@@ -18,6 +18,7 @@ import { ConnexionComponent } from './connexion/connexion.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MyTeamComponent } from './my-team/my-team.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {CookieService} from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -42,11 +43,14 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatInputModule,
     ReactiveFormsModule,
     FormsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
   ],
   exports: [
     PokemonListComponent,
     PokemonDetailComponent,
+  ],
+  providers: [
+    CookieService
   ]
 })
 export class PokemonsModule { }

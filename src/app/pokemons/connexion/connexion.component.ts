@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-connexion',
@@ -23,7 +24,7 @@ export class ConnexionComponent implements OnInit {
 
   tokens: any;
 
-  constructor(private pokemonService: PokemonService, private router: Router) { }
+  constructor(private pokemonService: PokemonService, private router: Router, private cookieService: CookieService) { }
 
   ngOnInit() {
   }
@@ -33,9 +34,10 @@ export class ConnexionComponent implements OnInit {
     this.identifiants.password = this.connexionForm.get('password').value;
     this.pokemonService.connexion(this.identifiants).subscribe(res => {
       this.tokens = res;
-      localStorage.setItem('access_token', this.tokens.access_token);
-      localStorage.setItem('refresh_token', this.tokens.refresh_token);
-      localStorage.setItem('expires_in', this.tokens.expires_in);
+      const expire = new Date();
+      expire.setSeconds(expire.getSeconds() + Number(this.tokens.expires_in));
+      this.cookieService.set('access_token', this.tokens.access_token, expire);
+      console.log(this.cookieService.get('access_token'));
       this.router.navigate(['/my-team']);
     },
     error => console.log(error));

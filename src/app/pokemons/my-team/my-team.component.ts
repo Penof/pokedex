@@ -1,3 +1,4 @@
+import { CookieService } from 'ngx-cookie-service';
 import { Routes, Router } from '@angular/router';
 import { Observable, forkJoin, of } from 'rxjs';
 import { PokemonService } from 'src/app/services/pokemon.service';
@@ -23,7 +24,7 @@ export class MyTeamComponent implements OnInit {
     offset: 0
   };
 
-  constructor(private pokemonService: PokemonService, private router: Router) { }
+  constructor(private pokemonService: PokemonService, private router: Router , private cookieService: CookieService) { }
 
   ngOnInit() {
     this.myteam();
@@ -84,7 +85,7 @@ export class MyTeamComponent implements OnInit {
   }
 
   deconnexion() {
-    localStorage.clear();
+    this.cookieService.deleteAll();
     this.router.navigate(['/connexion']);
   }
 }

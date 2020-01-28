@@ -1,3 +1,4 @@
+import { CookieService } from 'ngx-cookie-service';
 import { PagedData } from './../models/paged-data.model';
 import { Pokemon } from '../models/pokemon.model';
 import { Identifiants } from '../models/identifiants.model';
@@ -14,7 +15,7 @@ export class PokemonService {
 
   private pokemonUrl = 'http://app-ec21e68e-3e55-42d7-b1ae-3eef7507a353.cleverapps.io';
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private cookieService: CookieService) { }
 
   getPokemons(pagination: PagedData<Pokemon>): Observable<PagedData<Pokemon>> {
     const url = this.pokemonUrl + '/pokemons?offset=' + pagination.offset + '&limit=' + pagination.limit;
@@ -53,11 +54,6 @@ export class PokemonService {
     return this.httpClient.put<number[]>(url, listeIds);
   }
 
-  refreshToken() {
-    const httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json'})
-    };
-    return this.httpClient.post(this.pokemonUrl + '/auth/refresh', localStorage.getItem('refresh_token'), httpOptions);
-  }
+
 
 }
