@@ -6,7 +6,7 @@
 
         <form class="example-form">
             <mat-form-field class="example-full-width" >
-                <input type="text" matInput placeholder="id pokemon"  matInput [matAutocomplete]="auto" (keyup)="searchPokemons($event)">
+                <input type="text" matInput placeholder="pokemon"  matInput [matAutocomplete]="auto" (keyup)="searchPokemons($event)">
                 <mat-autocomplete #auto="matAutocomplete" (optionSelected)="OnPokemonSelected($event.option)">
                     <mat-option *ngFor="let pokemon of pagination.data"  [id]="pokemon.id" [value]="pokemon.name">
                         <img  class="search" src="../../../assets/img/sprites/{{pokemon.id}}.png" >

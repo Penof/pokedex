@@ -19,7 +19,7 @@ export class MyTeamComponent implements OnInit {
   selectedPokemonId: number;
   pagination: PagedData<Pokemon> = {
     data: [],
-    limit: 20,
+    limit: 151,
     offset: 0
   };
 
